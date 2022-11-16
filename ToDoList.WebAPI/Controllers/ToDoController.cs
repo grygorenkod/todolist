@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ToDoList.BLL.Models;
-using ToDoList.BLL;
+using ToDoList.BLL.Interfaces;
 
 namespace ToDoList.WebAPI.Controllers
 {
@@ -8,8 +8,8 @@ namespace ToDoList.WebAPI.Controllers
     [Route("[controller]")]
     public class ToDoController : ControllerBase
     {
-        private readonly ToDoBLL _toDoBLL;
-        public ToDoController(ToDoBLL toDoBLL)
+        private readonly IToDoBLL _toDoBLL;
+        public ToDoController(IToDoBLL toDoBLL)
         {
             _toDoBLL = toDoBLL;
         }

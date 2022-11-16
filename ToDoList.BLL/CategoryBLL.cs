@@ -3,13 +3,14 @@ using ToDoList.DAL.Repository.Entities;
 using ToDoList.BLL.Models;
 using ToDoList.BLL.AutoMapper;
 using ToDoList.BLL.Interfaces;
+using ToDoList.DAL.Interfaces;
 
 namespace ToDoList.BLL
 {
     public class CategoryBLL : ICategoryBLL
     {
-        private readonly CategoryDAL _categoryDAL;
-        public CategoryBLL(CategoryDAL categoryDAL)
+        private readonly ICategoryDAL _categoryDAL;
+        public CategoryBLL(ICategoryDAL categoryDAL)
         {
             _categoryDAL = categoryDAL;
         }

@@ -15,11 +15,11 @@ namespace ToDoList.DAL
 
         public async Task<List<Category>> GetCategoryListAsync()
         {
-            return await _db.Categories.ToListAsync();
+            return await _db.Category.ToListAsync();
         }
         public async Task<Category> GetCategoryByIdAsync(int id)
         {
-            return await _db.Categories.FirstOrDefaultAsync(e => e.Id == id);
+            return await _db.Category.FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task AddCategoryAsync(Category category)
@@ -37,7 +37,7 @@ namespace ToDoList.DAL
         public async Task<int> DeleteCategoryAsync(int id)
         {
             var categoryId = await GetCategoryByIdAsync(id);
-            _db.Categories.Remove(categoryId);
+            _db.Category.Remove(categoryId);
             return await _db.SaveChangesAsync();
         }
     }

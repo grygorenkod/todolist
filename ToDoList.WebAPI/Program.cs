@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using ToDoList.BLL;
+using ToDoList.BLL.Interfaces;
 using ToDoList.DAL;
+using ToDoList.DAL.Interfaces;
 
 namespace ToDoList.WebAPI
 {
@@ -13,22 +17,22 @@ namespace ToDoList.WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<ToDoListDBContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
+            //Add services to the container
+            string? connection = builder.Configuration.GetConnectionString("DBConnection");
+            builder.Services.AddDbContext<ToDoListDBContext>(options => options.UseSqlServer(connection));
 
-            
-            builder.Services.AddControllersWithViews();
+            //builder.Services.AddScoped<ICategoryBLL, CategoryBLL>();
+            //builder.Services.AddScoped<IToDoBLL, ToDoBLL>();
+            //builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
+            //builder.Services.AddScoped<IToDoDAL, ToDoDAL>();
+            builder.Services.AddBLLDependencies(builder.Configuration);
+            builder.Services.AddScoped<ICategoryBLL, CategoryBLL>();
+            builder.Services.AddScoped<IToDoBLL, ToDoBLL>();
+            builder.Services.AddControllers();
 
-            //builder.Services.AddCors(options =>
-            //    options.AddDefaultPolicy(
-            //    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AnyOrigin", builder =>
-                {
-                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                });
-            });
+                options.AddDefaultPolicy(
+                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(s =>
@@ -39,7 +43,13 @@ namespace ToDoList.WebAPI
 
             var app = builder.Build();
 
-            app.UseCors("AnyOrigin");
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+
+            }
+
+            app.UseCors();
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ToDoList.BLL;
+using ToDoList.BLL.Interfaces;
 using ToDoList.BLL.Models;
 
 namespace ToDoList.WebAPI.Controllers
@@ -8,8 +9,8 @@ namespace ToDoList.WebAPI.Controllers
     [Route("[controller]")]
     public class CategoryController : ControllerBase
     {
-        private readonly CategoryBLL _categoryBLL;
-        public CategoryController(CategoryBLL categoryBLL)
+        private readonly ICategoryBLL _categoryBLL;
+        public CategoryController(ICategoryBLL categoryBLL)
         {
             _categoryBLL = categoryBLL;
         }
@@ -39,7 +40,10 @@ namespace ToDoList.WebAPI.Controllers
         public async Task<IActionResult> AddCategoryAsync(CategoryModel categoryModel)
         {
             if (ModelState.IsValid)
+            {
                 await _categoryBLL.AddCategoryAsync(categoryModel);
+                return Ok(categoryModel);
+            }
             return BadRequest(ModelState);
         }
 

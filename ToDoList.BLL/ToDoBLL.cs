@@ -3,13 +3,14 @@ using ToDoList.BLL.Models;
 using ToDoList.DAL;
 using ToDoList.DAL.Repository.Entities;
 using ToDoList.BLL.Interfaces;
+using ToDoList.DAL.Interfaces;
 
 namespace ToDoList.BLL
 {
     public class ToDoBLL : IToDoBLL
     {
-        private readonly ToDoDAL _toDoDALL;
-        public ToDoBLL(ToDoDAL toDoDAL)
+        private readonly IToDoDAL _toDoDALL;
+        public ToDoBLL(IToDoDAL toDoDAL)
         {
             _toDoDALL = toDoDAL;
         }

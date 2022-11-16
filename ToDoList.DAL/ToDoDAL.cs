@@ -16,11 +16,11 @@ namespace ToDoList.DAL
 
         public async Task<List<ToDo>> GetToDoListAsync()
         {
-            return await _db.ToDos.ToListAsync();
+            return await _db.ToDo.ToListAsync();
         }
         public async Task<ToDo> GetToDoByIdAsync(int id)
         {
-            return await _db.ToDos.FirstOrDefaultAsync(e => e.Id == id);
+            return await _db.ToDo.FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task AddToDoAsync(ToDo todo)
@@ -38,7 +38,7 @@ namespace ToDoList.DAL
         public async Task<int> DeleteToDoAsync(int id)
         {
             var todo = await GetToDoByIdAsync(id);
-            _db.ToDos.Remove(todo);
+            _db.ToDo.Remove(todo);
             return await _db.SaveChangesAsync();
         }
     }

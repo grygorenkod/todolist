@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToDoList.BLL.Models;
+﻿using ToDoList.BLL.Models;
 
 namespace ToDoList.BLL.Interfaces
 {
@@ -13,5 +8,6 @@ namespace ToDoList.BLL.Interfaces
         Task<CategoryModel> GetCategoryByIdAsync(int id);
         Task AddCategoryAsync(CategoryModel categoryModel);
         Task UpdateCategoryAsync(CategoryModel categoryModel);
+        Task<int> DeleteCategoryAsync(int id);
     }
 }

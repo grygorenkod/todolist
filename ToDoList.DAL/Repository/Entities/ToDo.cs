@@ -19,7 +19,7 @@ namespace ToDoList.DAL.Repository.Entities
         public string Description { get; set; }
         [Column("is_done")]
         public bool IsDone { get; set; }
-
+        
         public virtual Category Category { get; set; }
     }
 }
