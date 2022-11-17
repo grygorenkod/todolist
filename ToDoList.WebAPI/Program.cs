@@ -1,9 +1,5 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using ToDoList.BLL;
 using ToDoList.BLL.Interfaces;
 using ToDoList.DAL;
@@ -17,17 +13,15 @@ namespace ToDoList.WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //Add services to the container
             string? connection = builder.Configuration.GetConnectionString("DBConnection");
             builder.Services.AddDbContext<ToDoListDBContext>(options => options.UseSqlServer(connection));
 
-            //builder.Services.AddScoped<ICategoryBLL, CategoryBLL>();
-            //builder.Services.AddScoped<IToDoBLL, ToDoBLL>();
-            //builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
-            //builder.Services.AddScoped<IToDoDAL, ToDoDAL>();
-            builder.Services.AddBLLDependencies(builder.Configuration);
+            //Add services to the container
+            //builder.Services.AddBLLDependencies(builder.Configuration);
             builder.Services.AddScoped<ICategoryBLL, CategoryBLL>();
             builder.Services.AddScoped<IToDoBLL, ToDoBLL>();
+            builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
+            builder.Services.AddScoped<IToDoDAL, ToDoDAL>();
             builder.Services.AddControllers();
 
             builder.Services.AddCors(options =>
@@ -46,7 +40,6 @@ namespace ToDoList.WebAPI
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
             }
 
             app.UseCors();

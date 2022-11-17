@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dbNx9mYubvhhvs1rMpqkkSJ1TS3PiucUfVyAGikG6VJ16AF6QNkyiRzCiSuTT4CbADK11jwN7tFBOXG/+nmMRQ==",
+  "dgSpecHash": "MNSr8LJtRrQvz4qsbYXGJQ1VvY8ziDTlGXQyE+48jZbwzCSYJESUk94Ju/f6Q0wgcT2+00ggUcxo5h22JpGvVA==",
   "success": true,
   "projectFilePath": "D:\\Projects\\GitRepo\\ToDoList\\ToDoList.BLL\\ToDoList.BLL.csproj",
   "expectedPackageFiles": [
@@ -54,7 +54,7 @@
     "C:\\Users\\20rou\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "C:\\Users\\20rou\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\20rou\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "C:\\Users\\20rou\\.nuget\\packages\\mysqlconnector\\2.0.0\\mysqlconnector.2.0.0.nupkg.sha512",
+    "C:\\Users\\20rou\\.nuget\\packages\\mysqlconnector\\2.2.0\\mysqlconnector.2.2.0.nupkg.sha512",
     "C:\\Users\\20rou\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\20rou\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\6.0.0\\pomelo.entityframeworkcore.mysql.6.0.0.nupkg.sha512",
     "C:\\Users\\20rou\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",

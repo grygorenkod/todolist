@@ -13,11 +13,12 @@ namespace ToDoList.DAL
     {
         public static IServiceCollection AddDbDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ToDoListDBContext>(
+            services.AddDbContextPool<ToDoListDBContext>(
             options =>
             {
                 string connection = configuration.GetConnectionString("DBConnection");
-                options.UseMySql(connection, ServerVersion.AutoDetect(connection));
+                options.UseMySql("server=localhost\\SQLEXPRESS;database=library;encrypt=false;",
+                    ServerVersion.AutoDetect(connection));
             });
             return services;
         }
