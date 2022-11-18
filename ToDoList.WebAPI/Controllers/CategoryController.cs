@@ -52,7 +52,10 @@ namespace ToDoList.WebAPI.Controllers
         public async Task<IActionResult> UpdateCategoryAsync(CategoryModel categoryModel)
         {
             if (ModelState.IsValid)
+            {
                 await _categoryBLL.UpdateCategoryAsync(categoryModel);
+                return Ok(categoryModel);
+            }
             return BadRequest(ModelState);
         }
 
@@ -60,9 +63,12 @@ namespace ToDoList.WebAPI.Controllers
         [Route("deleteCategory")]
         public async Task<IActionResult> DeleteCategoryAsync(int id)
         {
-            var category = await GetCategoryByIdAsync(id);
-            if (category != null)
+            var categoryModel = await GetCategoryByIdAsync(id);
+            if (categoryModel != null)
+            {
                 await _categoryBLL.DeleteCategoryAsync(id);
+                return Ok(categoryModel);
+            }
             return NotFound(id);
         }
     }
