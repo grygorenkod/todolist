@@ -41,6 +41,7 @@ namespace ToDoList.WebAPI.Controllers
             if (ModelState.IsValid)
             {
                 await _toDoBLL.AddToDoAsync(toDoModel);
+                return Ok(toDoModel);
             }
                 
             return BadRequest(ModelState);
@@ -51,7 +52,10 @@ namespace ToDoList.WebAPI.Controllers
         public async Task<IActionResult> UpdateToDoAsync(ToDoModel toDoModel)
         {
             if (ModelState.IsValid)
+            {
                 await _toDoBLL.UpdateToDoAsync(toDoModel);
+                return Ok(toDoModel);
+            } 
             return NotFound(ModelState);
         }
 
@@ -61,7 +65,10 @@ namespace ToDoList.WebAPI.Controllers
         {
             var toDo = await GetToDoByIdAsync(id);
             if (toDo != null)
+            {
                 await _toDoBLL.DeleteToDoAsync(id);
+                return Ok(toDo);
+            }
             return NotFound(id);
         }
     }
