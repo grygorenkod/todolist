@@ -4,10 +4,8 @@
 
 namespace ToDoList.DAL.Migrations
 {
-    /// <inheritdoc />
-    public partial class InitialCreateToDoListDB : Migration
+    public partial class Initial : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -29,20 +27,19 @@ namespace ToDoList.DAL.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    categoryid = table.Column<int>(name: "category_id", type: "int", nullable: false),
+                    category_id = table.Column<int>(type: "int", nullable: true),
                     name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    isdone = table.Column<bool>(name: "is_done", type: "bit", nullable: false)
+                    description = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    is_done = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ToDo", x => x.id);
                     table.ForeignKey(
                         name: "FK_ToDo_Category_category_id",
-                        column: x => x.categoryid,
+                        column: x => x.category_id,
                         principalTable: "Category",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -51,7 +48,6 @@ namespace ToDoList.DAL.Migrations
                 column: "category_id");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

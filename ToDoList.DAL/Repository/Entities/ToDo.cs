@@ -10,15 +10,15 @@ namespace ToDoList.DAL.Repository.Entities
         [Column("id")]
         public int Id { get; set; }
         [Column("category_id")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         [Required]
         [Column("name")]
         public string Name { get; set; }
         [Column("description")]
-        [StringLength(100)]
-        public string Description { get; set; }
+        [StringLength(50)]
+        public string? Description { get; set; }
         [Column("is_done")]
-        public bool IsDone { get; set; }
+        public bool? IsDone { get; set; }
         
         public virtual Category Category { get; set; }
     }

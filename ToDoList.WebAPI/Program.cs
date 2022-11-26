@@ -16,12 +16,12 @@ namespace ToDoList.WebAPI
             string? connection = builder.Configuration.GetConnectionString("DBConnection");
             builder.Services.AddDbContext<ToDoListDBContext>(options => options.UseSqlServer(connection));
 
-            //Add services to the container
-            //builder.Services.AddBLLDependencies(builder.Configuration);
             builder.Services.AddScoped<ICategoryBLL, CategoryBLL>();
             builder.Services.AddScoped<IToDoBLL, ToDoBLL>();
+
             builder.Services.AddScoped<ICategoryDAL, CategoryDAL>();
             builder.Services.AddScoped<IToDoDAL, ToDoDAL>();
+
             builder.Services.AddControllers();
 
             builder.Services.AddCors(options =>
